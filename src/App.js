@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from './components/Header';
 import ItemList from './components/ItemList';
+import AddItemModal from './components/AddItemModal';
+import { Container } from 'reactstrap';
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -13,7 +15,10 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <Header />
-        <ItemList />
+        <Container>
+          <AddItemModal />
+          <ItemList />
+        </Container>
       </div>
     </Provider>
   );

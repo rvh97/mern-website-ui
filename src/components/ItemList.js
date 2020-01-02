@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
+import { ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import { getItems, deleteItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
@@ -16,7 +16,6 @@ class ItemList extends Component {
   render() {
     const { items } = this.props.item;
     return (
-      <Container>
         <ListGroup>
           {
             items.map(({ name, id }) => (
@@ -27,7 +26,6 @@ class ItemList extends Component {
             ))
           }
         </ListGroup>
-      </Container>
     );
   }
 }
