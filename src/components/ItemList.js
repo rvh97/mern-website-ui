@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import { getItems } from '../actions/itemActions';
+import { getItems, deleteItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
 class ItemList extends Component {
   componentDidMount() {
     this.props.getItems();
+  }
+
+  onDeleteButtonClick = id => {
+    this.props.deleteItem(id);
   }
 
   render() {
@@ -15,8 +19,11 @@ class ItemList extends Component {
       <Container>
         <ListGroup>
           {
-            items.map(({ name }) => (
-              <ListGroupItem>{ name }</ListGroupItem>
+            items.map(({ name, id }) => (
+              <ListGroupItem>
+                <Button onClick={this.onDeleteButtonClick.bind(this, id)}>X</Button>
+                { name }
+              </ListGroupItem>
             ))
           }
         </ListGroup>
@@ -34,4 +41,4 @@ const mapStateToProps = state => ({
   item: state.item
 })
 
-export default connect(mapStateToProps, { getItems })(ItemList)
+export default connect(mapStateToProps, { getItems, deleteItem })(ItemList)
