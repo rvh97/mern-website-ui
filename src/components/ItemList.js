@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
-import uuid from 'uuid';
+import { connect } from 'react-redux';
+import { getItems } from '../actions/itemActions';
+import PropTypes from 'prop-types';
 
 class ItemList extends Component {
-  state = {
-    items: [
-      { id: uuid(), name: 'An item' },
-      { id: uuid(), name: 'Another item' },
-      { id: uuid(), name: 'One more item' },
-      { id: uuid(), name: 'Last item' }
-    ]
+  componentDidMount() {
+    this.props.getItems();
   }
 
   render() {
-    const { items } = this.state;
+    const { items } = this.props.item;
     return (
       <Container>
         <ListGroup>
           {
             items.map(({ name }) => (
-              <ListGroupItem>{name}</ListGroupItem>
+              <ListGroupItem>{ name }</ListGroupItem>
             ))
           }
         </ListGroup>
@@ -28,4 +25,13 @@ class ItemList extends Component {
   }
 }
 
-export default ItemList
+ItemList.propTypes = {
+  getItems: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+  item: state.item
+})
+
+export default connect(mapStateToProps, { getItems })(ItemList)
