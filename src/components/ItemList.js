@@ -18,9 +18,9 @@ class ItemList extends Component {
     return (
         <ListGroup>
           {
-            items.map(({ name, id }) => (
-              <ListGroupItem>
-                <Button onClick={this.onDeleteButtonClick.bind(this, id)}>X</Button>
+            items.map(({ name, _id }) => (
+              <ListGroupItem key={_id}>
+                <Button onClick={this.onDeleteButtonClick.bind(this, _id)}>X</Button>
                 { name }
               </ListGroupItem>
             ))

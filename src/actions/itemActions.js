@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, LOADING_ITEMS } from './types';
 
+const route = '/api/item';
+
 export const getItems = () => dispatch => {
   dispatch(setLoadingItems);
   axios
-    .get('/api/item')
+    .get(route)
     .then(res => 
       dispatch({
         type: GET_ITEMS,
@@ -13,18 +15,22 @@ export const getItems = () => dispatch => {
     );
 };
 
-export const addItem = item => {
-  return {
-    type: ADD_ITEM,
-    payload: item
-  };
+export const addItem = item => dispatch => {
+  axios
+    .post(route, item)
+    .then(res => dispatch({
+      type: ADD_ITEM,
+      payload: res.data
+    }));
 };
 
-export const deleteItem = id => {
-  return {
-    type: DELETE_ITEM,
-    payload: id
-  };
+export const deleteItem = id => dispatch => {
+  axios
+    .delete(`${route}/${id}`)
+    .then(res => dispatch({
+      type: DELETE_ITEM,
+      payload: id
+    }));
 };
 
 export const setLoadingItems = () => {
