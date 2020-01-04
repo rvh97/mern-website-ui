@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import ItemList from './components/ItemList';
 import AddItemModal from './components/AddItemModal';
+import LoginModal from './components/LoginModal';
 import { Container } from 'reactstrap';
 
 import { Provider } from 'react-redux';
@@ -15,6 +16,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <Header />
+        <LoginModal />
         <Container>
           <AddItemModal />
           <ItemList />
