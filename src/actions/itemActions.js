@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, LOADING_ITEMS } from './types';
+import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, LOADING_ITEMS, GET_ERRORS } from './types';
 
 const route = '/item';
 
@@ -21,6 +21,10 @@ export const addItem = item => dispatch => {
     .then(res => dispatch({
       type: ADD_ITEM,
       payload: res.data
+    }))
+    .catch(err => dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data.error
     }));
 };
 
@@ -30,6 +34,10 @@ export const deleteItem = id => dispatch => {
     .then(res => dispatch({
       type: DELETE_ITEM,
       payload: id
+    }))
+    .catch(err => dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data.error
     }));
 };
 
