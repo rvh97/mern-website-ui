@@ -24,9 +24,13 @@ class LoginModal extends Component {
     this.setState({ showModal: !this.state.showModal });
   }
 
-  loggedInSuccessfully = () => {
-    this.setState({ isLoggedIn: true, buttonLabel: 'Logout' });
-    this.toggleLoginModal();
+  loginGoogle = () => {
+    const { height, width } = window.screen;
+    window.open(
+      `${process.env.REACT_APP_SERVER_SOCKET}/auth/google`,
+      'googleLoginWindow',
+      `height=${height/2},width=${width/2},left=${width/4},top=${height/4}`
+    );
   }
 
   render() {
@@ -36,7 +40,7 @@ class LoginModal extends Component {
         <Modal isOpen={this.state.showModal} toggle={this.toggleLoginModal}>
           <ModalHeader>Login</ModalHeader>
           <ModalBody>
-            <Button color="primary" onClick={this.loggedInSuccessfully}>Login using Google</Button>
+            <Button color="primary" onClick={this.loginGoogle}>Login using Google</Button>
             {' '}
             <Button onClick={this.toggleLoginModal}>Cancel</Button>
           </ModalBody>

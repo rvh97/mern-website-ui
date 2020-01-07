@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, LOADING_ITEMS } from './types';
 
-const route = '/api/item';
+const route = '/item';
 
 export const getItems = () => dispatch => {
   dispatch(setLoadingItems);
