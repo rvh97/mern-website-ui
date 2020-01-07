@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { ListGroup, ListGroupItem, Button } from 'reactstrap';
-import { connect } from 'react-redux';
-import { getItems, deleteItem } from '../actions/itemActions';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { ListGroup, ListGroupItem, Button } from "reactstrap";
+import { connect } from "react-redux";
+import { getItems, deleteItem } from "../actions/itemActions";
+import PropTypes from "prop-types";
 
 class ItemList extends Component {
   componentDidMount() {
@@ -11,21 +11,21 @@ class ItemList extends Component {
 
   onDeleteButtonClick = id => {
     this.props.deleteItem(id);
-  }
+  };
 
   render() {
     const { items } = this.props.item;
     return (
-        <ListGroup>
-          {
-            items.map(({ name, _id }) => (
-              <ListGroupItem key={_id}>
-                <Button onClick={this.onDeleteButtonClick.bind(this, _id)}>X</Button>
-                { name }
-              </ListGroupItem>
-            ))
-          }
-        </ListGroup>
+      <ListGroup>
+        {items.map(({ name, _id }) => (
+          <ListGroupItem key={_id}>
+            <Button onClick={this.onDeleteButtonClick.bind(this, _id)}>
+              X
+            </Button>
+            {name}
+          </ListGroupItem>
+        ))}
+      </ListGroup>
     );
   }
 }
@@ -33,10 +33,10 @@ class ItemList extends Component {
 ItemList.propTypes = {
   getItems: PropTypes.func.isRequired,
   item: PropTypes.object.isRequired
-}
+};
 
 const mapStateToProps = state => ({
   item: state.item
-})
+});
 
-export default connect(mapStateToProps, { getItems, deleteItem })(ItemList)
+export default connect(mapStateToProps, { getItems, deleteItem })(ItemList);

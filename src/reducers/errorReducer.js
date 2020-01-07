@@ -1,7 +1,7 @@
 import { GET_ERRORS, CLEAR_ERRORS } from "../actions/types";
 
 const initialState = {
-  msg: ''
+  msg: ""
 };
 
 export default function(state = initialState, action) {
@@ -9,7 +9,7 @@ export default function(state = initialState, action) {
     case GET_ERRORS:
       return {
         msg: action.payload
-      }
+      };
     case CLEAR_ERRORS:
       return initialState;
     default:
