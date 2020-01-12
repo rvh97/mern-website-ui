@@ -32,6 +32,7 @@ class ItemList extends Component {
 
 ItemList.propTypes = {
   getItems: PropTypes.func.isRequired,
+  deleteItem: PropTypes.func.isRequired,
   item: PropTypes.object.isRequired
 };
 
