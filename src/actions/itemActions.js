@@ -10,7 +10,7 @@ import {
 const route = "/item";
 
 export const getItems = () => dispatch => {
-  dispatch(setLoadingItems);
+  dispatch(setLoadingItems());
   axios.get(route).then(res =>
     dispatch({
       type: GET_ITEMS,
@@ -18,6 +18,10 @@ export const getItems = () => dispatch => {
     })
   );
 };
+
+const setLoadingItems = () => ({
+  type: LOADING_ITEMS
+});
 
 export const addItem = item => dispatch => {
   axios
@@ -51,10 +55,4 @@ export const deleteItem = id => dispatch => {
         payload: err.response.data.error
       })
     );
-};
-
-export const setLoadingItems = () => {
-  return {
-    type: LOADING_ITEMS
-  };
 };
