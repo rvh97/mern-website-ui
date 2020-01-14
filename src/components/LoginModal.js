@@ -31,13 +31,7 @@ class LoginModal extends Component {
   };
 
   loginGoogle = () => {
-    const { height, width } = window.screen;
-    window.open(
-      `${process.env.REACT_APP_SERVER_SOCKET}/auth/google`,
-      "googleLoginWindow",
-      `height=${height / 2},width=${width / 2},left=${width / 4},top=${height /
-        4}`
-    );
+    window.location.href = `${process.env.REACT_APP_SERVER_SOCKET}/auth/google`;
   };
 
   render() {
