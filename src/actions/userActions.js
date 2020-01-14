@@ -1,12 +1,12 @@
-import { GET_USER, LOADING_USER, CLEAR_USER } from "./types";
-import Axios from "axios";
+import { GET_USER, LOADING_USER, CLEAR_USER, LOGOUT_USER } from "./types";
+import axios from "axios";
 
-const route = "/user";
 const STATUS_NOT_AUTHORIZED = 403;
 
 export const getUser = () => dispatch => {
   dispatch(setLoadingUser());
-  Axios.get(route)
+  axios
+    .get("/user")
     .then(res => {
       dispatch({
         type: GET_USER,
@@ -20,6 +20,12 @@ export const getUser = () => dispatch => {
         throw err;
       }
     });
+};
+
+export const logoutUser = () => dispatch => {
+  axios.get("/auth/logout").then(res => {
+    dispatch(clearUser());
+  });
 };
 
 const setLoadingUser = () => ({

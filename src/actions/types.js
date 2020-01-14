@@ -7,3 +7,4 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const GET_USER = "GET_USER";
 export const LOADING_USER = "LOADING_USER";
 export const CLEAR_USER = "CLEAR_USER";
+export const LOGOUT_USER = "LOGOUT_USER";

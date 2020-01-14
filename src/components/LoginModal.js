@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
-import { getUser } from "../actions/userActions";
+import { getUser, logoutUser } from "../actions/userActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -14,7 +14,11 @@ class LoginModal extends Component {
   }
 
   buttonAction = () => {
-    this.toggleLoginModal();
+    if (this.isLoggedIn()) {
+      this.props.logoutUser();
+    } else {
+      this.toggleLoginModal();
+    }
   };
 
   isLoggedIn = () => !!this.props.user.user;
@@ -63,4 +67,4 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, { getUser })(LoginModal);
+export default connect(mapStateToProps, { getUser, logoutUser })(LoginModal);
