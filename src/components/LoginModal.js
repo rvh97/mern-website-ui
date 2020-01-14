@@ -1,24 +1,26 @@
 import React, { Component } from "react";
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
+import { getUser } from "../actions/userActions";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 class LoginModal extends Component {
   state = {
-    showModal: false,
-    isLoggedIn: false,
-    buttonLabel: "Login"
+    showModal: false
   };
+
+  componentDidMount() {
+    this.props.getUser();
+  }
 
   buttonAction = () => {
-    if (this.state.isLoggedIn) {
-      this.logout();
-    } else {
-      this.toggleLoginModal();
-    }
+    this.toggleLoginModal();
   };
 
-  logout = () => {
-    this.setState({ isLoggedIn: false, buttonLabel: "Login" });
-  };
+  isLoggedIn = () => !!this.props.user.user;
+
+  buttonLabel = () =>
+    this.props.user.user ? this.props.user.user.email : "Login";
 
   toggleLoginModal = () => {
     this.setState({ showModal: !this.state.showModal });
@@ -37,7 +39,7 @@ class LoginModal extends Component {
   render() {
     return (
       <div>
-        <Button onClick={this.buttonAction}>{this.state.buttonLabel}</Button>
+        <Button onClick={this.buttonAction}>{this.buttonLabel()}</Button>
         <Modal isOpen={this.state.showModal} toggle={this.toggleLoginModal}>
           <ModalHeader>Login</ModalHeader>
           <ModalBody>
@@ -52,4 +54,13 @@ class LoginModal extends Component {
   }
 }
 
-export default LoginModal;
+LoginModal.propTypes = {
+  getUser: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps, { getUser })(LoginModal);

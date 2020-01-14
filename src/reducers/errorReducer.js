@@ -8,6 +8,7 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case GET_ERRORS:
       return {
+        ...state,
         msg: action.payload
       };
     case CLEAR_ERRORS:

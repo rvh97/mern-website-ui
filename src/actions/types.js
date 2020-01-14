@@ -4,3 +4,6 @@ export const DELETE_ITEM = "DELETE_ITEM";
 export const LOADING_ITEMS = "LOADING_ITEMS";
 export const GET_ERRORS = "GET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
+export const GET_USER = "GET_USER";
+export const LOADING_USER = "LOADING_USER";
+export const CLEAR_USER = "CLEAR_USER";
